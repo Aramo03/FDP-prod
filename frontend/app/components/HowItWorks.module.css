@@ -1,0 +1,86 @@
+.wrap {
+  --line-progress: 0;
+}
+
+.list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 8px 28px;
+}
+
+.list::before,
+.list::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 99px;
+}
+
+.list::before {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.list::after {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  transform: scaleY(var(--line-progress));
+  transform-origin: top;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 18px;
+  padding: 0 0 42px;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.dot {
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 0 0 0 2px rgba(139, 124, 255, 0.7), 0 0 16px rgba(139, 124, 255, 0.5);
+}
+
+.dot::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+
+.index {
+  font-family: var(--font-display);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.item h3 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+
+.item p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list::after {
+    transform: scaleY(1);
+  }
+}
