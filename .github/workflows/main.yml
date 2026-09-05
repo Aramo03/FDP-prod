@@ -19,12 +19,15 @@ jobs:
       - name: Build Docker images
         run: docker compose build
 
-      - name: Start services
-        run: docker compose up -d
+      - name: Start database
+        run: docker compose up -d db
+
+      - name: Start backend
+        run: docker compose up -d backend
 
       - name: Run Django tests
-        run: docker compose exec -T backend python manage.py test
+        run: docker compose run --rm backend python manage.py test
 
       - name: Stop services
         if: always()
-        run: docker compose down
+        run: docker compose down -v
