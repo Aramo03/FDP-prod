@@ -18,3 +18,6 @@ jobs:
           cd backend
           pip install -r requirements.txt
           python manage.py check
+
+      - name: Build Docker images
+        run: docker compose build
